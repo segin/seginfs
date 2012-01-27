@@ -1,0 +1,19 @@
+seginfs - an unexciting filesystem
+==================================
+
+seginfs is a pretty mundane filesystem written by a guy that has no prior
+experience writing or working on filesystems.
+
+The filesystem is basically a design idea I had put into code format, or
+at least, that's what I'm going to try to do, if I don't abandon it.
+
+Every element of the filesystem will also be a file; the superblock,
+block bitmap, inode bitmap, inode table, extents bitmap, and extents table,
+will all be, themselves, files, and refereced in the inode table.
+
+Access control lists will not be initially implemented due to inexperience
+with anything but Windows NT ACLs, which aren't very useful for a filesystem
+desgined for POSIX-ish operating systems.
+
+Initially, I will implement it using FUSE, with vfs interfaces for other OSes
+coming Real Soon Now (TM).

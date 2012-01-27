@@ -1,0 +1,22 @@
+seginfs design and implementation
+=================================
+
+seginfs is a simplistic-ish 64-bit file system. Following the Unix concept of
+"everything is a file", the key design element is that all filesystem
+structures will also be recorded in the inode table and in the extents table,
+including the inode and extents tables themselves. Extents-based allocation is
+used (like in ext4, reiserfs4, Apple's HFS and HFS+, Microsoft's NTFS, list
+goes on) to simplify the computation of file data locations. This also makes it
+rather easy to grow the tables and their bitmaps simply by adding a new extent,
+or simply increasing the run-length of the current one if possible (to keep
+data contigious)
+
+seginfs is primarily a Unix file system, although it's intended structural
+flexibility will allow for use on non-Unix systems, such as Microsoft Windows
+
+Owing to ext2, a minimum number of blocks will always be restricted to
+exclusive use by uid 0 (root, the superuser).
+
+THE SUPERBLOCK
+==============
+
